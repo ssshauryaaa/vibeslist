@@ -51,26 +51,39 @@ const CtaFooter = () => {
         {/* Top: Header & Description */}
         <div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.85] max-w-3xl mx-auto mb-4">
-            Your next website starts here.
+            Your next AI coding tool starts here.
           </h2>
           <p className="text-white/60 font-body font-light text-sm md:text-base max-w-xl mx-auto">
-            Book a free strategy call. See what AI&#8209;powered design can do. No commitment, no pressure. Just possibilities.
+            Explore the directory. See what AI&#8209;powered coding can do. No commitment, no pressure. Just possibilities.
           </p>
         </div>
 
         {/* Bottom: Buttons */}
-        <div className="w-full flex flex-col items-center">
+        {/* <div className="w-full flex flex-col items-center">
           <div className="flex items-center justify-center gap-6">
-            <button className="liquid-glass-strong rounded-full px-6 py-3 text-sm font-medium text-white flex items-center gap-2 hover:bg-white/10 transition-all font-body cursor-pointer">
-              Book a Call
+            <button 
+              onClick={() => {
+                const el = document.getElementById("tools");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.location.href = "/#tools";
+                }
+              }}
+              className="liquid-glass-strong rounded-full px-6 py-3 text-sm font-medium text-white flex items-center gap-2 hover:bg-white/10 transition-all font-body cursor-pointer"
+            >
+              Explore Tools
               <ArrowUpRight className="h-5 w-5" />
             </button>
-            <button className="bg-white text-black rounded-full px-6 py-3 text-sm font-medium flex items-center gap-2 hover:bg-white/90 transition-colors font-body cursor-pointer">
-              View Pricing
+            <button 
+              onClick={() => window.location.href = "/contact"}
+              className="bg-white text-black rounded-full px-6 py-3 text-sm font-medium flex items-center gap-2 hover:bg-white/90 transition-colors font-body cursor-pointer"
+            >
+              Submit a Tool
               <ArrowUpRight className="h-4 w-4" />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

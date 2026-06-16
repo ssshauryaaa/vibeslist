@@ -13,46 +13,25 @@ interface FeaturedItem {
 
 const featuredItems: FeaturedItem[] = [
   {
-    name: "Cursor Editor",
-    code: "#CURSOR",
-    tagline: "The AI-first code editor fork of VS Code.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop",
-    url: "https://cursor.com",
+    name: "Aceternity UI",
+    code: "#ACETERNITY",
+    tagline: "200+ free animated React & Next.js components built with Tailwind CSS and Framer Motion.",
+    image: "https://ui.aceternity.com/banner.png",
+    url: "https://ui.aceternity.com/components",
   },
   {
-    name: "Bolt.new",
-    code: "#BOLT",
-    tagline: "Fullstack sandbox running directly in the browser.",
-    image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=600&auto=format&fit=crop",
-    url: "https://bolt.new",
+    name: "MotionSites",
+    code: "#MOTION",
+    tagline: "Premium AI design prompts, hero sections, animated backgrounds and templates.",
+    image: "https://storage.googleapis.com/gpt-engineer-file-uploads/OzagiQ9ZfuQNatpgQBgKibiYrtm2/social-images/social-1772948036264-1social.webp",
+    url: "https://motionsites.ai",
   },
   {
-    name: "v0 by Vercel",
-    code: "#V0",
-    tagline: "Generative UI system producing React and Tailwind code.",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600&auto=format&fit=crop",
-    url: "https://v0.dev",
-  },
-  {
-    name: "Lovable.dev",
-    code: "#LOVABLE",
-    tagline: "Conversational builder for production-ready web apps.",
-    image: "https://images.unsplash.com/photo-1618005198143-d56653df28d6?q=80&w=600&auto=format&fit=crop",
-    url: "https://lovable.dev",
-  },
-  {
-    name: "Windsurf",
-    code: "#WINDSURF",
-    tagline: "Context-aware agentic coding powered by Cascade.",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600&auto=format&fit=crop",
-    url: "https://windsurf.com",
-  },
-  {
-    name: "Claude Code",
-    code: "#CLAUDE",
-    tagline: "Anthropic's terminal agent that reads and writes code.",
-    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=600&auto=format&fit=crop",
-    url: "https://claude.com/product/claude-code",
+    name: "Componentry",
+    code: "#COMPONENTRY",
+    tagline: "Free, open-source animated React primitives with copy-paste code and Framer Motion.",
+    image: "https://www.componentry.fun/opengraph-image",
+    url: "https://www.componentry.fun/docs",
   },
 ];
 
@@ -62,14 +41,14 @@ export default function FeaturedCards() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-semibold tracking-tight italic font-heading">
-            Featured Environments
+            Design Resources
           </h2>
           <p className="mt-4 text-white/50 max-w-md mx-auto text-sm">
-            Hover over the cards below to see the interactive 3D refraction effect. Click to visit the platform.
+            Curated component libraries and design tools to supercharge your next project.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 w-full max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 w-full max-w-5xl mx-auto">
           {featuredItems.map((item) => (
             <CometCard key={item.name} className="w-full flex justify-center">
             <button

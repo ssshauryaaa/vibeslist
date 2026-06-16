@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
-import { ImageOff, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import type { Tool } from '@/types/tool';
+import ToolMockup, { getBrandSolidGradient } from '@/components/tool-mockup';
 
 // Variants for motion animation
 const cardVariants: Variants = {
@@ -20,6 +21,8 @@ interface ToolCardProps {
 
 export default function ToolCard({ tool, onClick }: ToolCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   // Check if tool is new (added within last 14 days)
   const isNew = () => {
@@ -44,23 +47,27 @@ export default function ToolCard({ tool, onClick }: ToolCardProps) {
       onClick={onClick}
     >
       {/* Screenshot */}
-      <div className="aspect-[16/10] w-full overflow-hidden bg-white/5 relative">
-        {(tool.screenshot && tool.screenshot !== '') ? (
+      <div className="aspect-[16/10] w-full overflow-hidden bg-white/5 relative border-b border-white/5">
+        {(tool.screenshot && tool.screenshot !== '' && !imageError) ? (
           <img
             src={tool.screenshot}
             alt={`${tool.name} screenshot`}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            onError={() => setImageError(true)}
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-white/[0.04] to-white/[0.01] flex items-center justify-center">
-            <ImageOff className="w-6 h-6 text-white/60" />
-          </div>
+          <ToolMockup
+            name={tool.name}
+            category={tool.category}
+            url={tool.url}
+            tagline={tool.tagline}
+          />
         )}
 
         {/* Pricing badge (top-right) */}
         <Badge
           variant="secondary"
-          className="absolute top-2 right-2 text-xs bg-black/50 backdrop-blur-md border border-white/10"
+          className="absolute top-2 right-2 text-xs bg-black/60 backdrop-blur-md border border-white/10 z-20"
         >
           {tool.pricing}
         </Badge>
@@ -68,7 +75,7 @@ export default function ToolCard({ tool, onClick }: ToolCardProps) {
         {/* New badge (top-left) */}
         {isNew() && (
           <Badge
-            className="absolute top-2 left-2 text-xs bg-brand text-white"
+            className="absolute top-2 left-2 text-xs bg-brand text-white z-20"
           >
             New
           </Badge>
@@ -80,14 +87,15 @@ export default function ToolCard({ tool, onClick }: ToolCardProps) {
         {/* Logo and name row */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
-            {(tool.logo && tool.logo !== '') ? (
+            {(tool.logo && tool.logo !== '' && !logoError) ? (
               <img
                 src={tool.logo}
                 alt={`${tool.name} logo`}
                 className="w-6 h-6 rounded-md object-cover"
+                onError={() => setLogoError(true)}
               />
             ) : (
-              <div className="w-6 h-6 rounded-md bg-white/10 flex items-center justify-center text-xs font-semibold">
+              <div className={`w-6 h-6 rounded-md bg-gradient-to-tr ${getBrandSolidGradient(tool.name)} flex items-center justify-center text-[10px] font-bold text-white shadow-sm`}>
                 {tool.name.charAt(0)}
               </div>
             )}

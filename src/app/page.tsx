@@ -1,6 +1,5 @@
 "use client"
 
-import FeaturedStrip from '@/components/featured-strip';
 import ToolsDirectory from '@/components/tools-directory';
 import CtaFooter from '@/components/cta-footer';
 import FeaturedCards from '@/components/featured-cards';
@@ -21,7 +20,6 @@ export default function Home() {
         />
         <div className="relative z-10">
           <FeaturedCards />
-          <FeaturedStrip />
           <ToolsDirectory />
         </div>
       </div>

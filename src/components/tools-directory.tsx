@@ -151,16 +151,24 @@ export default function ToolsDirectory() {
 
       {/* Dialog */}
       {selectedTool && dialogOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <ToolDialog
-            tool={selectedTool}
-            onOpenChange={(open) => {
-              if (!open) {
-                setSelectedTool(null);
-                setDialogOpen(false);
-              }
-            }}
-          />
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 cursor-pointer"
+          onClick={() => {
+            setSelectedTool(null);
+            setDialogOpen(false);
+          }}
+        >
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-2xl cursor-default">
+            <ToolDialog
+              tool={selectedTool}
+              onOpenChange={(open) => {
+                if (!open) {
+                  setSelectedTool(null);
+                  setDialogOpen(false);
+                }
+              }}
+            />
+          </div>
         </div>
       )}
     </>

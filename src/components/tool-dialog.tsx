@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import type { Tool } from '@/types/tool';
-import { ImageOff, Link2, Check } from 'lucide-react';
+import { Link2, Check, X } from 'lucide-react';
 import ExternalLinkButton from '@/components/shared/external-link-button';
+import ToolMockup, { getBrandSolidGradient } from '@/components/tool-mockup';
 
 // Copy to clipboard utility
 const copyToClipboard = async (text: string) => {
@@ -14,7 +15,7 @@ const copyToClipboard = async (text: string) => {
   } catch (err) {
     console.error('Failed to copy: ', err);
     return false;
-  };
+  }
 };
 
 interface ToolDialogProps {
@@ -24,6 +25,8 @@ interface ToolDialogProps {
 
 export default function ToolDialog({ tool, onOpenChange }: ToolDialogProps) {
   const [isCopied, setIsCopied] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   const handleCopyLink = async () => {
     const success = await copyToClipboard(window.location.origin + `?tool=${tool.id}`);
@@ -44,33 +47,47 @@ export default function ToolDialog({ tool, onOpenChange }: ToolDialogProps) {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-auto liquid-glass max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border-none p-0"
+        className="pointer-events-auto liquid-glass max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border-none p-0 relative"
       >
+        {/* Close button */}
+        <button
+          onClick={() => onOpenChange(false)}
+          className="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/80 transition-colors cursor-pointer"
+          aria-label="Close dialog"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
         {/* Large screenshot */} 
-        <div className="relative">
-          {(tool.screenshot && tool.screenshot !== '') ? (
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-white/5 border-b border-white/5">
+          {(tool.screenshot && tool.screenshot !== '' && !imageError) ? (
             <img
               src={tool.screenshot}
               alt={`${tool.name} screenshot`}
-              className="aspect-[16/9] w-full object-cover"
+              className="w-full h-full object-cover"
+              onError={() => setImageError(true)}
             />
           ) : (
-            <div className="aspect-[16/9] w-full bg-gradient-to-br from-white/[0.04] to-white/[0.01] flex items-center justify-center">
-              <ImageOff className="w-10 h-10 text-white/60" />
-            </div>
+            <ToolMockup
+              name={tool.name}
+              category={tool.category}
+              url={tool.url}
+              tagline={tool.tagline}
+            />
           )}
         </div>
 
         <div className="p-6">
           <div className="flex items-center gap-4 mb-4">
-            {(tool.logo && tool.logo !== '') ? (
+            {(tool.logo && tool.logo !== '' && !logoError) ? (
               <img
                 src={tool.logo}
                 alt={`${tool.name} logo`}
                 className="w-8 h-8 rounded-md object-cover"
+                onError={() => setLogoError(true)}
               />
             ) : (
-              <div className="w-8 h-8 rounded-md bg-white/10 flex items-center justify-center text-xs font-semibold">
+              <div className={`w-8 h-8 rounded-md bg-gradient-to-tr ${getBrandSolidGradient(tool.name)} flex items-center justify-center text-sm font-bold text-white shadow-sm`}>
                 {tool.name.charAt(0)}
               </div>
             )}
