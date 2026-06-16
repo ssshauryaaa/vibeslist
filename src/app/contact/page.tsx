@@ -14,6 +14,7 @@ function ContactForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,9 +25,30 @@ function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setSending(false);
-    setSubmitted(true);
+    setErrorMsg("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setErrorMsg(err.message || "An unexpected error occurred.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClasses =
@@ -95,6 +117,12 @@ function ContactForm() {
           className={`${inputClasses} resize-none`}
         />
       </div>
+      {/* Error Message */}
+      {errorMsg && (
+        <p className="text-[9px] text-red-400 text-center font-medium animate-pulse">
+          {errorMsg}
+        </p>
+      )}
 
       {/* Submit with Moving Border */}
       <MovingBorderButton
