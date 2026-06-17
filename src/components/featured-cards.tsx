@@ -33,6 +33,13 @@ const featuredItems: FeaturedItem[] = [
     image: "https://www.componentry.fun/opengraph-image",
     url: "https://www.componentry.fun/docs",
   },
+  {
+    name: "21st.dev",
+    code: "#21STDEV",
+    tagline: "Discover and share beautiful UI components made by the community.",
+    image: "https://21st.dev/opengraph-image.png",
+    url: "https://21st.dev/community/components",
+  },
 ];
 
 export default function FeaturedCards() {
@@ -48,7 +55,7 @@ export default function FeaturedCards() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 w-full max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
           {featuredItems.map((item) => (
             <CometCard key={item.name} className="w-full flex justify-center">
             <button
