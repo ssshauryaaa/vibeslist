@@ -40,6 +40,34 @@ const featuredItems: FeaturedItem[] = [
     image: "https://21st.dev/opengraph-image.png",
     url: "https://21st.dev/community/components",
   },
+  {
+    name: "Anime.js",
+    code: "#ANIMEJS",
+    tagline: "A lightweight JavaScript animation library with a simple, yet powerful API.",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
+    url: "https://animejs.com/documentation/",
+  },
+  {
+    name: "Motion",
+    code: "#MOTION",
+    tagline: "A modern animation library for React and JavaScript.",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+    url: "https://motion.dev/examples",
+  },
+  {
+    name: "Kokonut UI",
+    code: "#KOKONUTUI",
+    tagline: "A collection of modern, animated React components and templates.",
+    image: "https://images.unsplash.com/photo-1607799279861-4dddf9657f20?q=80&w=800&auto=format&fit=crop",
+    url: "https://kokonutui.com/docs",
+  },
+  {
+    name: "BKlit",
+    code: "#BKLIT",
+    tagline: "Premium animated React components and blocks for modern applications.",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
+    url: "https://bklit.com/docs/components",
+  },
 ];
 
 export default function FeaturedCards() {
