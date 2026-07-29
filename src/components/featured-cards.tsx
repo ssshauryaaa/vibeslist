@@ -62,11 +62,25 @@ const featuredItems: FeaturedItem[] = [
     url: "https://kokonutui.com/docs",
   },
   {
-    name: "BKlit",
-    code: "#BKLIT",
-    tagline: "Premium animated React components and blocks for modern applications.",
+    name: "Styles Refero",
+    code: "design.md",
+    tagline: "Design.md files of many websites",
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
-    url: "https://bklit.com/docs/components",
+    url: "https://styles.refero.design",
+  },
+  {
+    name: "Mobbin",
+    code: "#Mobbin",
+    tagline: "Already existing sites w screens",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
+    url: "https://mobbin.com",
+  },
+  {
+    name: "v0",
+    code: "#v0",
+    tagline: "Many templates and AI",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
+    url: "https://v0.app/templates/",
   },
 ];
 
